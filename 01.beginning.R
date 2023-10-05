@@ -7,11 +7,11 @@ zina<-4+4
 duccio<-5+1
 final<- zina*duccio
 
-# Array
+# Array (vettore)
 sophie <- c(10,20,30,40) #number of units
 paula <- c(100,200,300,500) #number of people
 
-#Plot raphic representation of the link between the two
+#Plot graphic representation of the link between the two
 plot(paula, sophie) graphic representation of the link between the two
 plot(paula, sophie, xlab="number of people", ylab="number of microplastics")
 #or

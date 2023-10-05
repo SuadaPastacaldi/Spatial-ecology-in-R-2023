@@ -4,8 +4,8 @@ spatial ecology unibo
 Duccio Rocchini
 
 ## Main scripts 😄☣️
-+scripts on populations
-+scripts on community
-+scripts on ecosystem
+scripts on populations
+scripts on community
+scripts on ecosystem
 
 >**notes:**

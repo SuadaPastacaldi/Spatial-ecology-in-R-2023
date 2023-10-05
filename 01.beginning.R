@@ -18,7 +18,7 @@ plot(paula, sophie, xlab="number of people", ylab="number of microplastics")
 paula<-people
 sophie<-microplastics
 plot(people, microplastic)
-# canging graphic layout
+# changing graphic layout
 plot(people, microplastic, pch=19)
 plot(people, microplastic, pch=19, cex=2)
 plot(people, microplastic, pch=19, cex=2, col="blue")

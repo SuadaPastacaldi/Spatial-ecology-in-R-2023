@@ -28,3 +28,33 @@ cl<-colorRampPalette(c("black", "red", "orange", "yellow"))(100)
 plot(treedensitymap, col = cl)
 
 points(bei, cex=.2, col="white")
+
+#additional variables, bei.extra, contains 2 variables
+plot(bei.extra)
+#select first element, and name new data
+elev<-bei.extra[[1]]
+#or
+bei.extra$elev
+
+#plot it
+plot(elev)
+
+# put the data we got toghther, making a multiframe
+
+par(mfrow=c(1,2)) #1 is row, 2 is columns
+
+plot(treedensitymap)
+plot(elev)
+
+#multiframe with 3 plots
+#bei
+#densitymap
+#elev
+
+par(mfrow=c(1,3))
+plot(bei, cex=.1)
+plot(treedensitymap)
+plot(elev)
+
+                
+

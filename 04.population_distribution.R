@@ -21,4 +21,23 @@ rana$Occurrence
 plot(rana)
 plot(rana, cex=.2)
 
+#select only presencies
+#[]to select elements
+#, closure of querty
+
+rana[rana$Occurrence==1,]
+pres<-rana[rana$Occurrence==1,]
+
+pres$Occurrence
+#gives only ones, so if we plot it there is a lower amount of points
+plot(pres, cex=0.3)
+     
+
+#select only absences
+rana[rana$Occurrence!=1,]
+abs<-rana[rana$Occurrence!=1,]
+
+abs$Occurrence
+#gives only zeros
+
 

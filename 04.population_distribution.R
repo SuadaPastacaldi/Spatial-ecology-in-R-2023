@@ -46,6 +46,10 @@ abs$Occurrence
 plot(abs)
 plot(pres)
 
+#graphical nulling
+dev.off
+
+
 #plotting em in the same plot with different colours
 
 

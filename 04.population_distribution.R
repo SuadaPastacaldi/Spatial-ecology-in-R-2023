@@ -41,3 +41,12 @@ abs$Occurrence
 #gives only zeros
 
 
+#visualise presences and absences toghether, making a multiframe
+ par(mfrow=c(1,2))
+plot(abs)
+plot(pres)
+
+#plotting em in the same plot with different colours
+
+
+

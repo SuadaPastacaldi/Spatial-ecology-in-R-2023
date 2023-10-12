@@ -11,7 +11,7 @@ file<-system.file("external/species.shp", package="sdm")
 
 #vector files, a series of points(coordinates) in space that indicate movement
 #make a vector with info about rana temporaria to get the coordinates
-vect(file)
+vect(file) #to import data
 rana<-vect(file)
 
 
@@ -47,10 +47,65 @@ plot(abs)
 plot(pres)
 
 #graphical nulling
-dev.off
+dev.off()
 
 
 #plotting em in the same plot with different colours
+plot(pres, col="dark blue")
+points(abs, col="light blue") 
+#points doesn't plot again just adds points at the previous plot
+
+#why is it distributed in that way?
+#can use predictors to answer
+
+#elevation predictor
+#find the path of the predictor: elevation.asc
+system.file("external/elevation.asc", package="sdm") 
+
+path.to.elev<-system.file("external/elevation.asc", package="sdm") 
+#to import it, since it's an image we are not using vect function but rast function
+rast(path.to.elev)
+elev<-rast(path.to.elev) #name it
+plot(elev)
+points(pres)
+
+#temperature predictor
+system.file("external/temperature.asc", package="sdm") 
+rast(system.file("external/temperature.asc", package="sdm") )
+temp<-rast(system.file("external/temperature.asc", package="sdm") )
+plot(temp)
+points(pres)
+
+#vegetation predictor
+path.to.veg<- system.file("external/temperature.asc", package="sdm") 
+rast(path.to.veg)
+veg<-rast(system.file("external/vegetation.asc", package="sdm")
+plot(veg)
+points(pres)
+
+#precipitation predictor
+path.to.prec<- system.file("external/precipitation.asc", package="sdm") 
+prec<-rast(path.to.prec)
+plot(prec)
+points(pres)
+
+
+
+#new multiframe with all predictors
+par(mfrow=c(2,2))
+plot(prec)
+points(pres)
+plot(veg)
+points(pres)
+plot(temp)
+points(pres)
+plot(elev)
+points(pres)
+
+          
+          
+
+
 
 
 

@@ -2,11 +2,11 @@
 #remote sensing satellite
 
 #use of devtools package
-#library(devtools) # packages in R are also called libraries
+library(devtools) # packages in R are also called libraries
 
 # install the imageRy package from GitHub
 devtools::install_github("ducciorocchini/imageRy")
-
+library(imageRy)
 #use package
 im.list() #gives list of info in dataset
 [23] "sentinel.dolomites.b2.tif"                         
@@ -111,4 +111,18 @@ dev.off()
 im.plotRGB(stacksentinel, r=3, g=2, b=1)
 #low resolution when no infrared
 #we can tho use it in the visualisation process
+
+# to include infrared
+im.plotRGB(stacksentinel, r=3, g=4, b=1)
+
+
+
+########manca roba  stacksent
+pairs(stacksentinel)
+
+# vegetarion index
+#the higher the index the healthier the veg
+# the index is created with substracting from near infra value (should be higher) the red value (shouldl be low)
+# red value if it's higer tells us the capability of photosyntesis is lower
+##
 

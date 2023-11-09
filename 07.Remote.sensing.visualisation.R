@@ -119,10 +119,8 @@ im.plotRGB(stacksentinel, r=3, g=4, b=1)
 
 ########manca roba  stacksent
 pairs(stacksentinel)
+##each plot shows the relationship between a pair of variables
+##allows us to see both distributions of a single variable and relationships between two variables
 
-# vegetarion index
-#the higher the index the healthier the veg
-# the index is created with substracting from near infra value (should be higher) the red value (shouldl be low)
-# red value if it's higer tells us the capability of photosyntesis is lower
-##
+
 

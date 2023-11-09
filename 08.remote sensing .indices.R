@@ -1,3 +1,9 @@
+# vegetarion index
+#the higher the index the healthier the veg
+# the index is created with substracting from near infra value (should be higher) the red value (shouldl be low)
+# red value if it's higer tells us the capability of photosyntesis is lower
+##
+
 ## use mato grosso info brazil forest
 ## comparison 1992-2006 situation
 

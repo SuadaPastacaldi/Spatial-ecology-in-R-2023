@@ -117,6 +117,20 @@ library(ggplot2)
 #aes, aesthetics
 #fill, colour of filling
 
-p1 <- ggplot(tabella, aes(x=class, y=y1992, color=class) + geom_bar(stat="identity", fill="white"))
-p2 <- ggplot(tabella, aes(x=class, y=y2006, color=class) + geom_bar(stat="identity", fill="white"))
+
+# final plot
+p1 <- ggplot(tabella, aes(x=class, y=p1992, color=class)) + geom_bar(stat="identity", fill="white")
+p2 <- ggplot(tabella, aes(x=class, y=p2006, color=class)) + geom_bar(stat="identity", fill="white")
+p1
+p2
+#[error] Don't know how to automatically pick scale for object of type <data.frame>. Defaulting
+#to continuous.
+#merge the 2 graphs
 p1+p2
+
+##different scales in the 2 graphs
+#rescale
+p1 <- ggplot(tabella, aes(x=class, y=y1992, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100))
+p2 <- ggplot(tabella, aes(x=class, y=y2006, color=class)) + geom_bar(stat="identity", fill="white") + ylim(c(0,100))
+p1
+p2

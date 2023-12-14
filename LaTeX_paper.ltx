@@ -4,8 +4,9 @@
 %can change scritte con \documentclass[12pt]{article}
 \usepackage{graphicx} % Required for inserting images, equinvalent to library()
 \usepackage{hyperref}
+\usepackage{natbib} %required to 
 
-\title{First document}
+\title{\huge{First document}}
 \author{Suada Pastacaldi}
 \date{December 2023}
 %\date{December 2023} , if removed takes it from pc
@@ -43,13 +44,13 @@ severity of that effect, consequential to a hazard(s) in food"
 \section{Methods}
 formulas:
 
-\section{Discussion}
+
 %to insert images upload from barra a sx 
 %functio to start figure
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-    \caption{Flood in tuscany}
+    \caption{Flood in Tuscany}
     \label{fig: ciao}
 \end{figure}
 Gravity
@@ -64,4 +65,22 @@ Square of gravity
 \end{equation}
 references to \ref{eq2}
 %to make references visibles 
+\section{Discussion}
+agrees with \cite{Ander}
+main achievements of research
+\begin{itemize}
+    \item flood
+    \item flood2
+    \item flood3
+\end{itemize}
+use of numbers
+\begin{enumerate}
+    \item flood
+    \item food
+    \item flood
+\end{enumerate}
+\begin{thebibliography}
+    \bibitem[how it appears in the text]{Label}
+    
+\end{thebibliography}
 \end{document}

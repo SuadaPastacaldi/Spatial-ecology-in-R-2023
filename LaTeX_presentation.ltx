@@ -7,7 +7,7 @@
 %change colour of theme
 \usecolortheme{seahorse}
 %
-\title{sei scema}
+\title{Presentations}
 \author{Suada Pastacaldi}
 \date{December 2023}
 
@@ -46,5 +46,67 @@ spacial ecology
     \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
 
 \end{frame}
+\section{Formulas}
+
+\begin{frame}{Formulas}
+     \begin{equation}
+        H' = - \sum_{i=1}^{N} p_i \times \log{p_i}
+    \end{equation}
+\begin{equation}
+K_{\alpha}=\frac{1}{\left( \sum_{i=1}^{N} p_i \times p_i^{\alpha-1} \right)^{\frac{1}{\alpha-1}}} 
+\end{equation}
+\end{frame}
+
+\begin{frame}{Formulas in text}
+    Bla bla bla I love formulas, especially into my sentences
+$H' = - \sum_{i=1}^{N} p_i \times \log{p_i}$ and blablabla again
+\end{frame}
+
+
+ \begin{frame}{Formulas that no other software can do!}
+    \begin{equation}
+    M_d=
+    \begin{pmatrix}
+    d_{\lambda_1,\lambda_1} & d_{\lambda_1,\lambda_2} & d_{\lambda_1,\lambda_3} & \cdots & d_{\lambda_1,\lambda_n} \\
+    d_{\lambda_2,\lambda_1} & d_{\lambda_2,\lambda_2} & d_{\lambda_2,\lambda_3} & \cdots & d_{\lambda_2,\lambda_n} \\
+    d_{\lambda_3,\lambda_1} & d_{\lambda_3,\lambda_2} & d_{\lambda_3,\lambda_3} & \cdots & d_{\lambda_3,\lambda_n} \\
+    \vdots  & \vdots  & \vdots  & \ddots & \vdots  \\
+    d_{\lambda_n,\lambda_1} & d_{\lambda_n,\lambda_2} & d_{\lambda_n,\lambda_3} & \cdots & d_{\lambda_n,\lambda_n}
+    \end{pmatrix}
+    \end{equation}
+\end{frame}
+\begin{frame}{text plus figure}
+    hsuejendjj
+    \centering
+    \bigskip
+    \includegraphics[width=\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    
+\end{frame}
+\begin{frame}{columns in beamer}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering
+        text
+        \column{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.2\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{The code!}
+    \lstinputlisting[language=R]{code.R}
+\end{frame}
+
+\begin{frame}{The code!}
+    \lstinputlisting[language=R]{} \\
+    \bigskip
+    This is the function of R we are using, where:
+    \begin{itemize}
+        \item x = input file...
+        \item $\alpha$ = blablabla
+    \end{itemize}
+    \alpha
+\end{frame}
 
 \end{document}
+

@@ -2,7 +2,7 @@
 # R as a calculator
 4+4
 
-# Assignment throu <- (or =)
+# Assignment <- (or =)
 zina<-4+4
 duccio<-5+1
 final<- zina*duccio
@@ -14,18 +14,23 @@ paula <- c(100,200,300,500) #number of people
 #Plot graphic representation of the link between the two
 plot(paula, sophie) graphic representation of the link between the two
 plot(paula, sophie, xlab="number of people", ylab="number of microplastics")
+
 #or
 paula<-people
 sophie<-microplastics
 plot(people, microplastic)
-# changing graphic layout
+
+# changing graphic's layout
 plot(people, microplastic, pch=19)
 plot(people, microplastic, pch=19, cex=2)
 plot(people, microplastic, pch=19, cex=2, col="blue")
 
+# Functions: commands with parenthesis, 
+# Arguments: inside function's parenthesis
 # Instal packages
 instal.packages("sp")
-#to chack if it's actually there
+
+#installment succeded
 library(sp)
 
-# Functions got parenthesis and inside em there are #Arguments
+

@@ -51,8 +51,11 @@ plotRGB(elba, r=2,g=1,b=3)
 plotRGB(elba, r=3,g=2,b=1)
 
 ##### COPERNICUS
+#all world
+#variables in 4 different frameworks
+# ex vegetation, many  different indices
+
 # https://land.copernicus.eu/global/
-# ex vegetation, many indices
 
 # download image, 
 # .nc formato

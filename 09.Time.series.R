@@ -6,6 +6,8 @@ library(imageRy)
 im.list()
 
 #different nitrogen situation in europe
+#before and after covid quarantine
+
 #import EN 01 (europe nitrogen)
 #situation in january
 EN01<-im.import("EN_01.png")
@@ -35,6 +37,8 @@ plot(diff, col=cldif)
 dev.off()
 
 ## temperature in greenland (of surface)
+#ice melting
+
 im.list()
 #4 single layers
 g2000<-im.import( "greenland.2000.tif")

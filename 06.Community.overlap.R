@@ -2,6 +2,9 @@
 #time relation between species
 #especially with animals, we get the info with camera traps
 #we get where and at what time the certain species passed
+#to see overlap between two niches
+
+library(overlap)
 
 data(kerinci)
 head(kerinci) #to show some data (not all species)

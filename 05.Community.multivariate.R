@@ -1,5 +1,9 @@
 # how species are related to each other in time
+#multivariate analysis 
+#rescale all data in just two dimentions 
+
 # with vegan package, vegetation analysis
+library(vegan)
 # ordination methods (ordinate em in space-->multivariate analysis)
 
 

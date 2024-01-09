@@ -1,5 +1,6 @@
 #visualise satellite data
 #remote sensing satellite
+#powerfull tool to measure climatic variables, investigate a certain area in a small amount of time
 
 #use of devtools package
 library(devtools) # packages in R are also called libraries

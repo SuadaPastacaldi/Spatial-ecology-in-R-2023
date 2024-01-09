@@ -2,6 +2,7 @@
 #download and import data
 
 library(terra)
+#to get function rast
 
 #vedi code ducciorocchini per link ai siti
 #to work on small scale is better to work on sentinel data

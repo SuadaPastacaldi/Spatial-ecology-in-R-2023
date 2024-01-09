@@ -1,4 +1,5 @@
 ## Classify satellite images and estimate the amount of change
+# frequencies of pixels, to see a change in time
 #vgetetation no reflection of red, high reflectance in near infrared
 #water high reflection of red, near infrared absorbed
 

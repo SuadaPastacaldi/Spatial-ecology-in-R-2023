@@ -1,12 +1,13 @@
 #measuring of RS based variability 
+#variability analysis beacause it's measure of biodiversity
 #important in abiotic and biotic component
-
+#best method is getting standard deviation from mean
 #measuring of RS based variability 
 #important in abiotic and biotic component
 
 #libraries we need
 library(imageRy)
-library(terra)
+library(terra) #to get function focal
 library(viridis)
 
 im.list()
@@ -70,7 +71,7 @@ plot(sd7, col=viridisc)
 
 
 dev.off()
-####PCA
+##########################            PCA                ###########################################
 #with sentinel data we perform pca and then perform the calculation of sd
 #to see how much the 3 bands are related with each other
 #going to make a plot

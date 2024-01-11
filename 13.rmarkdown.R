@@ -17,3 +17,14 @@ if not result
 ```{r, eval=F}
 2+3
 ```
+
+Using proper packages:
+library for remote sensing
+```{r, eval=T}
+library(imageRy)
+```
+
+Import data 
+```{r, eval=T}
+im.list()
+```

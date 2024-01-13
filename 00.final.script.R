@@ -5,7 +5,7 @@
 #01 beginning
 #02 population ecology
 #03 population distribution 
-
+#04 communities
 #------------------------------------------------
 # program doesn't read anything following a #
 # R as a calculator
@@ -273,5 +273,79 @@ par(mfrow=c(2,2))
           points(pres)
           plot(elev)
           points(pres)
+
+#----------------------------------------------
+
+#04 communities
+
+#spacial relationship between different species
+
+
+#MULTIVARIATE ANALYSIS
+#rescale multidimentional data in two dimentions 
+#to get spacial info we need to visualize data in 2d 
+#more methods to do so
+#ORDINATION METHOD
+##other methods, pc,correspondence analysis...
+
+
+#vegetation analysis
+#vegan package
+library(vegan)
+
+
+#dune dataset 
+#recall data
+data("dune")
+dune #shows data
+summary(dune)
+#head function, shows only first 6 rows
+head(dune)
+#same for tail function
+tail(dune)
+
+
+
+
+
+#ORDINATION METHOD
+#decorana function, detrended correspondence analysis
+ord<-decorana(dune)
+ord #to see data
+
+#4 axes,
+#use two to scale the whole data,
+#which two?
+#the two with longest axis lenght (represet the amount of data that it covers)
+#measure lenght of pc1 
+
+#Axis lengths    ->     3.7004 3.1166 1.30055 1.47888
+ldc1=3.7004
+ldc2=3.1166 
+ldc3=1.30055
+ldc4=1.47888
+
+total<- ldc1+ldc2+ldc3+ldc4
+
+#percentages of data in each of the 4 axis
+pldc1<-ldc1*100/total
+pldc2<-ldc2*100/total
+pldc3<-ldc3*100/total
+pldc4<-ldc4*100/total
+
+#lenght of each axis in %
+pldc1
+pldc2
+pldc3
+pldc4
+
+
+#use the biggest for principal component 1 (pc1)
+
+#ex ppldc1+pldc2 contains 71% of the information
+pldc1+pldc2
+
+#r already plots with the two longest axes as principal components
+plot(ord)
 
 

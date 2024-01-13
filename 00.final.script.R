@@ -6,6 +6,7 @@
 #02 population ecology
 #03 population distribution 
 #04 communities
+
 #------------------------------------------------
 # program doesn't read anything following a #
 # R as a calculator
@@ -278,8 +279,8 @@ par(mfrow=c(2,2))
 
 #04 communities
 
+#SPACIAL RELATIONSHIP
 #spacial relationship between different species
-
 
 #MULTIVARIATE ANALYSIS
 #rescale multidimentional data in two dimentions 
@@ -349,3 +350,4 @@ pldc1+pldc2
 plot(ord)
 
 
+#TIME RELATIONSHIP

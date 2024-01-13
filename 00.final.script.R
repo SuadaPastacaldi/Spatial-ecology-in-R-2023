@@ -163,4 +163,115 @@ plot(elev)
 
 #------------------------------------------------
 
+#03 population distribution
+
+#investigate why population disperse over landscape in a certain manner
+
+#spacial data needed
+#GDAL (geospastial data abstraction library)
+#GDAL data contained in packages
+#terra
+#species distribution models (sdm)
+library(sdm)
+library(terra)
+
+#find a file in a package by name
+#in sdm a folder called external that contains species (rana temporaria) data
+#package=sdm
+#folder=externl
+#name=species.shp
+system.file("external/species.shp", package="sdm")
+file<-system.file("external/species.shp", package="sdm")
+
+#vector files, 
+#a series of points(coordinates) in space that indicate movement
+#make a vector with info about rana temporaria to get the coordinates
+#function vect
+vect(file) #to import data
+rana<-vect(file)
+rana
+rana$Occurrence #sequence of zeros and ones, called precence/absence data
+
+#plot points in 2d
+plot(rana)
+plot(rana, cex=.5)
+
+#select only presences
+#[]to select elements
+#, closure of querty
+rana[rana$Occurrence==1,]
+pres<-rana[rana$Occurrence==1,]
+pres$Occurrence
+#only ones, so if we plot, only plotting ones
+plot(pres, cex=0.5)
+
+#select only absences
+rana[rana$Occurrence!=1,]
+abs<-rana[rana$Occurrence!=1,]
+abs$Occurrence
+#only zeros
+plot(abs, cex=0.5)
+
+#Multiframe presence, absence
+par(mfrow=c(1,2))
+plot(abs, cex=0.5)
+plot(pres, cex=0.5)
+
+#graphical nulling
+dev.off()
+
+
+#Same plot with different colours
+plot(pres, col="dark blue", cex=0.5)
+points(abs, col="light blue", cex=0.5) 
+#function points doesn't plot again just adds points at the previous plot
+
+
+#why is the specie distributed that way?
+#use of predictors to answer
+
+#elevation predictor
+#find the path of the predictor: elevation.asc
+system.file("external/elevation.asc", package="sdm") 
+path.to.elev<-system.file("external/elevation.asc", package="sdm") 
+
+#import it, since it's an image we are not using vect function but rast function
+rast(path.to.elev)
+elev<-rast(path.to.elev) #name it
+plot(elev)
+points(pres)
+
+#temperature predictor
+system.file("external/temperature.asc", package="sdm") 
+rast(system.file("external/temperature.asc", package="sdm") )
+temp<-rast(system.file("external/temperature.asc", package="sdm") )
+plot(temp)
+points(pres)
+
+#vegetation predictor
+path.to.veg<- system.file("external/temperature.asc", package="sdm") 
+rast(path.to.veg)
+veg<-rast(system.file("external/vegetation.asc", package="sdm"))
+plot(veg)
+points(pres)
+      
+#precipitation predictor
+path.to.prec<- system.file("external/precipitation.asc", package="sdm") 
+prec<-rast(path.to.prec)
+plot(prec)
+points(pres)
+          
+          
+          
+#multiframe with all predictors
+par(mfrow=c(2,2))
+          plot(prec)
+          points(pres)
+          plot(veg)
+          points(pres)
+          plot(temp)
+          points(pres)
+          plot(elev)
+          points(pres)
+
 

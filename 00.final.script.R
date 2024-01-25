@@ -351,3 +351,52 @@ plot(ord)
 
 
 #TIME RELATIONSHIP
+#info from camera traps
+#we get where and at what time a certain species passed by
+#overlap between two niches
+
+library(overlap)
+
+data(kerinci)
+head(kerinci) #to show some data (not all species)
+summary(kerinci) #gives the abstract of the data
+#3 columns- zone, species(sps), time
+
+#TIGER
+#specie tiger, new dataset with only tiger
+kerinci[kerinci$Sps=="tiger",] #closure with final coma
+tiger<-kerinci[kerinci$Sps=="tiger",]
+
+summary(tiger)
+#time is given in linear time
+#to pass from linear to circular time (times 2pigreco)
+kerinci$Time * 2 * pi
+#add a column to kerinci dataframe with circular time
+kerinci$timeRad <- kerinci$Time * 2 * pi
+
+head(kerinci)
+
+#object tiger with new column
+kerinci$timeRad <- kerinci$Time * 2 * pi
+tiger<-kerinci[kerinci$Sps=="tiger",]
+head(tiger)
+
+#DENSITY PLOT
+#graphical representation of the amount of time a certain species has been seen
+#selecting variable time in object tiger
+timetig <- tiger$timeRad
+#distribution of tiger data during the day
+densityPlot(timetig, rug=TRUE)
+
+#MACAQUE
+#select macaque as the species
+macaque<-kerinci[kerinci$Sps=="macaque",]
+#select variable time
+timemac <- macaque$timeRad
+#distribution of macaque data during the day
+densityPlot(timemac, rug=TRUE)
+
+#OVERLAP
+#overlapping of the two species
+#function overlapPlot, colours the overlapping distribution
+overlapPlot(timetig, timemac)

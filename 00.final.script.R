@@ -7,6 +7,7 @@
 #03 population distribution 
 #04 communities
 #05 remote sensing
+#06 time series
 
 #------------------------------------------------
 # program doesn't read anything following a #
@@ -484,9 +485,9 @@ plot(b4, col=clb)
 plot(b8, col=clb)
 
 #####STACK IMAGES
-# make a  stack of all plots toghether
-# 4 bands all toghether in same object
-#we can think about them as an array
+# make a stack of all bands toghether
+# 4 bands toghether in same object
+# as an array
 stacksentinel<-c(b2, b3, b4, b8)
 
 dev.off() #to clear plots
@@ -496,15 +497,17 @@ stacksentinel
 plot(stacksentinel, col=clb)
 
 #just to plot one of the elements (1,2,3,or 4)
-plot(stacksentinel[[4]], col=clb) #infrared
+plot(stacksentinel[[4]], col=clb) #infrared 
 
-#active sensors, like sonars emit energy and then get it back
-#satellites are passive sensors, they work with Reflectance, ratio between reflected energy and incidence energy
+#active sensors, (emit energy and receive it back getting info)
+#satellites are passive sensors, they work with Reflectance, 
+#ratio between reflected energy and incidence energy
 #flusso(R)/flusso(I)   (radiant fluxes)
 #if the ratio is zero-> all absorbed
 #if ratio is one-> all reflected
 
-###datas are always stored with integer values, to not have too many pixels with different values, to avoid overweight images
+###datas are always stored with integer values,
+###to not have too many pixels with different values, to avoid images that are too heavy
 
 #plot in multiframe, the bands with different color ramps
 blue<-colorRampPalette(c("blue", "lightblue" , "white")) (100)
@@ -519,23 +522,172 @@ plot(b4, col=red)         ## 3
 plot(b8, col=infrared)    ## 4
 
 ####### RGB
-#rgb space, the mannar computers see images
-# every pixel rgb at different brightness
+#rgb space, the manner computers compute images
+# every pixel has the three color bands at different brightness each 
 #3 basic components, green, blue, red-->RGB
-#if we assign right color to right element we might recreate "reality"'s color
+#if we assign right color to right element we might recreate "reality"'s colors
 dev.off()
 im.plotRGB(stacksentinel, r=3, g=2, b=1)
 #low resolution when no infrared
-#we can tho use it in the visualisation process
 
-# to include infrared
+#use it in the visualisation process
+#include infrared band into plot
 im.plotRGB(stacksentinel, r=3, g=4, b=1)
+#in this case over the green band
 
 
-
-########manca roba  stacksent
 pairs(stacksentinel)
 ##each plot shows the relationship between a pair of variables
 ##allows us to see both distributions of a single variable and relationships between two variables
 
-DA RIGUARDARE TUTTO FUCN R NON PLOTTA
+
+#REMOTE SENSING INDECES
+
+# vegetation index
+# higher the index the healthier the vegetation
+# the index is created with subtracting from near infrared value (should be higher) the red value (should be lower)
+# high reflectance on red band means low photosynthesis capability
+# high reflectance on infrared band means high photosynthesis capability
+# no infrared reflectance=no vegetation
+
+## create indeces
+
+## use mato grosso info (brazil forest)
+## comparison 1992-2006 situation
+
+library(imageRy) 
+library(terra)
+library(ggplot2)
+library(viridis)
+
+im.list()
+
+## [21] "matogrosso_ast_2006209_lrg.jpg"                    
+## [22] "matogrosso_l5_1992219_lrg.jpg"                     
+
+
+im.import("matogrosso_l5_1992219_lrg.jpg" )
+
+
+## 3 bands to use NIR 1 RED 2 GREEN 3 
+#nir put in red band --> vegetation appears red in the plot
+mato1992<-im.import("matogrosso_l5_1992219_lrg.jpg" )
+im.plotRGB(mato1992, r=1, g=2, b=3)# also im.plotRGB(mato1992, 1, 2, 3)
+
+# infrared in green
+im.plotRGB(mato1992, r=2, g=1, b=3)
+# infrared in blue
+im.plotRGB(mato1992, r=3, g=2, b=1)
+
+
+#situation 1992
+#red healthy tropical forest, starts just at the bottom to be ruined (greenish)
+
+
+
+
+#plot 2006
+mato2006<-im.import("matogrosso_ast_2006209_lrg.jpg")
+im.plotRGB(mato2006, r=2, g=1, b=3)
+
+im.plotRGB(mato2006, r=3, g=2, b=1)
+#putting nir in blue position
+#yellow enhances bare soil, vegetation in blue
+
+#situation 2006
+#visible decrease of vegetation
+
+
+#----------------------------------------------------------------------------
+
+#06 time series
+
+
+
+## time series analysis
+library(terra)
+library(imageRy)
+
+#in sentinel there is a band measuring no2 in atmosphere year long
+#we are interested in 2020
+#comparison of NO2 concentration before and after covid-19 quarantine
+im.list()
+
+#"EN_01.png"
+
+
+#import "EN_01.png" (europe nitrogen)
+#situation in january
+EN01<-im.import("EN_01.png")
+##situation in march
+EN13<-im.import("EN_13.png")
+
+
+#multiframe
+
+par(mfrow=c(1,2))
+im.plotRGB.auto(EN01)
+im.plotRGB.auto(EN13)
+
+#take just first band and make a difference
+#to see how the data changed in time
+#from january to march
+diff=EN01[[1]]-EN13[[1]]
+
+dev.off()
+plot(diff)
+
+#change palette
+cldif<-colorRampPalette(c("blue", "white", "red"))(100)
+plot(diff, col=cldif)
+
+#interpretation
+#red --> big difference, higher concentration in january
+#white --> more or less same concentration
+#blue --> less difference, higher concentration in march
+
+dev.off()
+
+#info about surface temperature in greenland
+#ice melting
+
+im.list()
+#4 single layers
+g2000<-im.import( "greenland.2000.tif")
+g2005<-im.import("greenland.2005.tif")
+g2010<-im.import("greenland.2010.tif")
+g2015<-im.import("greenland.2015.tif" )
+
+clg<-colorRampPalette(c("black","blue", "white", "red"))(100)
+plot(g2000,col=clg)
+#wide inner area with perennial ice
+
+plot(g2015,col=clg)
+#deep blue area is restricting, lost of ice
+
+par(mfrow=c(1,2))
+plot(g2000,col=clg)
+plot(g2015,col=clg)
+
+#stack all images toghether
+stackg<-c(g2000, g2005, g2010, g2015)
+plot(stackg,col=clg)
+
+
+dev.off()
+
+#difference between first and final element of file
+gdiff=stackg[[1]]-stackg[[4]] #or gdiff=g2000-g2015
+plot(gdiff, col=clg)
+
+
+#use three of the images to do an rgb 
+im.plotRGB(stackg, r=1, g=2, b=4)
+
+
+#interpretation
+#the inner part is increasing temperature, on coastside the situation is inverted 
+
+#if we have high values in 2015 everything is --> blueish/blackish
+#if it was higher in the first band it would have been red and green for the second
+

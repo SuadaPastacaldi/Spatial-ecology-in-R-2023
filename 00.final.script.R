@@ -8,6 +8,10 @@
 #04 communities
 #05 remote sensing
 #06 time series
+#07 external data import
+#08 classification
+#09 variability and pca
+#10 Rmarkdown
 
 #------------------------------------------------
 # program doesn't read anything following a #
@@ -691,3 +695,112 @@ im.plotRGB(stackg, r=1, g=2, b=4)
 #if we have high values in 2015 everything is --> blueish/blackish
 #if it was higher in the first band it would have been red and green for the second
 
+#-------------------------------------------------------------------------
+
+#08 external data import
+
+
+## EXTERNAL DATA IMPORT
+#download and import data
+
+library(terra)
+#to get function rast
+
+#vedi code ducciorocchini per link ai siti
+
+#sentinel data for small scale
+#landstat for long time period (1972-)
+
+
+##### EARTH OBSERVATORY
+
+
+#set working directory
+#to let R know where data is stored
+#seleziona elemento, proprietà, percorso, copy in function setwd()
+setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/R")
+setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop")
+#quotes for exiting R to get data from the pc
+#windows uses c:\\ but --> need to change it in / (every slash)
+#we use the function raster from terra 
+
+#like in im.import we tell R the name of the image we need to import from the folder
+#use quotes
+#add the file type (ex. .jpg)
+naja2003<-rast("najafiraq_etm_2003140_lrg.jpg")
+plot(naja2023)
+naja2023<-rast("najafiraq_oli_2023219_lrg.jpg")
+plot(naja2003)
+
+
+par(mfrow=c(1,2))
+plot(naja2003)
+plot(naja2023)
+
+#comparison by comparing layers,
+#multivariate analysis to pick a layer
+dev.off()
+#multitemporal change detection
+najadif=naja2003[[1]]-naja2023[[1]]
+cl<-colorRampPalette(c("brown","grey", "orange"))(100)
+plot(najadif, col=cl)
+#higher values--> higher difference in the two images
+
+#other download
+elba<-rast("italy_oli_2019360_lrg.jpg")
+plot(elba)
+
+#put rgb bands in different order
+plotRGB(elba, r=2,g=1,b=3)
+plotRGB(elba, r=3,g=2,b=1)
+
+##### COPERNICUS
+#worldwide
+#variables in 4 different frameworks
+
+# https://land.copernicus.eu/global/
+
+# download image, 
+# .nc format
+
+library(terra)
+
+#need of a tool to read .nc files
+library(ncdf4)
+
+# set working directory
+setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/R")
+
+## rast function to import image
+ceuro<-rast("c_gls_SSM1km_202310310000_CEURO_S1CSAR_V1.2.1.nc")
+
+#info about the file
+ceuro
+
+plot(ceuro)
+#2 images,
+#first one is the actual image,
+#the other one (noise) is measure of the error
+
+plot(ceuro[[1]])
+c<-colorRampPalette(c("red", "orange","yellow")) (100)
+plot(ceuro[[1]], col=c)
+
+# crop function 
+#specify extention of raster c(minlong, maxlong, minlat, maxlat)
+ext<- c(20, 40, 55,60)
+
+#function to cut image crop(name, ext)
+cut<-crop(ceuro[[1]], ext)
+plot(cut, col=c)
+
+
+#from copernicus
+#download other image, same extention, different day/year
+#ext has already been set, 
+#compare them 
+
+
+#--------------------------------------------------------------------
+
+#09 classification

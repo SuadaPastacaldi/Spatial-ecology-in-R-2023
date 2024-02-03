@@ -555,6 +555,8 @@ pairs(stacksentinel)
 # high reflectance on infrared band means high photosynthesis capability
 # no infrared reflectance=no vegetation
 
+## DVI = NIR - RED
+## NDVI = NIR -RED/ NIR+RED
 ## create indeces
 
 ## use mato grosso info (brazil forest)

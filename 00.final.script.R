@@ -1,5 +1,5 @@
 #Final script including all lectures scripts
-
+library(terra)
 #-----------------------------------------------
 #summary
 #01 beginning
@@ -28,15 +28,12 @@ final<- zina*duccio
 sophie <- c(10,20,30,40) #number of units
 paula <- c(100,200,300,500) #number of people
 
-#Plot graphic representation of the link between the two
-plot(paula, sophie) graphic representation of the link between the two
-plot(paula, sophie, xlab="number of people", ylab="number of microplastics")
+#Plot graphic representation of the link between the 
+plot(paula, sophie)# graphic representation of the link between the two
+plot(paula, sophie, xlab="number of people", ylab="number of microplastics", pch=19, cex=2, col="blue")
 
-#or
-paula<-people
-sophie<-microplastics
-plot(people, microplastic)
-
+people<- paula
+microplastic<- sophie
 # changing graphic's layout
 plot(people, microplastic, pch=19)
 plot(people, microplastic, pch=19, cex=2)
@@ -45,7 +42,7 @@ plot(people, microplastic, pch=19, cex=2, col="blue")
 # Functions: commands with parenthesis, 
 # Arguments: inside function's parenthesis
 # Instal packages
-instal.packages("sp")
+install.packages("sp")
 
 #installment succeded
 library(sp)
@@ -262,25 +259,25 @@ rast(path.to.veg)
 veg<-rast(system.file("external/vegetation.asc", package="sdm"))
 plot(veg)
 points(pres)
-      
+
 #precipitation predictor
 path.to.prec<- system.file("external/precipitation.asc", package="sdm") 
 prec<-rast(path.to.prec)
 plot(prec)
 points(pres)
-          
-          
-          
+
+
+
 #multiframe with all predictors
 par(mfrow=c(2,2))
-          plot(prec)
-          points(pres)
-          plot(veg)
-          points(pres)
-          plot(temp)
-          points(pres)
-          plot(elev)
-          points(pres)
+plot(prec)
+points(pres)
+plot(veg)
+points(pres)
+plot(temp)
+points(pres)
+plot(elev)
+points(pres)
 
 #----------------------------------------------
 
@@ -944,14 +941,13 @@ library(ggplot2)
 
 
 # final plot
-p1 <- ggplot(tabella, aes(x=class, y=p1992, color=class)) + geom_bar(stat="identity", fill="white")
-p2 <- ggplot(tabella, aes(x=class, y=p2006, color=class)) + geom_bar(stat="identity", fill="white")
-p1
-p2
+#p1 <- ggplot(tabella, aes(x=class, y=p1992, color=class)) + geom_bar(stat="identity", fill="white")
+#p2 <- ggplot(tabella, aes(x=class, y=p2006, color=class)) + geom_bar(stat="identity", fill="white")
+#p1
+#p2
 #[error] Don't know how to automatically pick scale for object of type <data.frame>. Defaulting
 #to continuous.
-#merge the 2 graphs
-p1+p2
+
 
 ##different scales in the 2 graphs
 #rescale
@@ -960,6 +956,7 @@ p2 <- ggplot(tabella, aes(x=class, y=y2006, color=class)) + geom_bar(stat="ident
 p1
 p2
 
+#merge the 2 graphs
 p1+p2
 
 
@@ -1050,7 +1047,7 @@ pairs(sent)
 # nir is less correlated
 #last raw sent 4 is just a control layer
 
-sentpc<-im.pca2(sent)
+sentpc<-im.pca(sent)
 #     Standard deviations (1, .., p=4):
 #[1] 76.76374 57.23045  4.76155  0.00000
 #the 1 is the the band with the highest possible range
@@ -1100,15 +1097,15 @@ plot(sdstack, col=viridisc)
 #10 Rmarkdown
 
 ---
-title: "Markdown Report"
+  title: "Markdown Report"
 author: "Suada Pastacaldi"
 date: "2024-01-09"
 output: html_document
 
 ---
-
-# My first markdown document
-to open markdown document, 
+  
+  # My first markdown document
+  to open markdown document, 
 new file, .Rmd
 
 eval is "evaluation" if we want the text to be avaluated or not
@@ -1117,14 +1114,14 @@ if it is-> code is in grey boxes and undernith we have the results in withe box
 ```{r, eval=T}
 2+3
 ```
- 
+
 if not result 
 ```{r, eval=F}
 2+3
 ```
 
 Using proper packages:
-library for remote sensing
+  library for remote sensing
 ```{r, eval=T}
 library(imageRy)
 ```
@@ -1169,5 +1166,4 @@ library(terra)
 viridisc <- colorRampPalette(viridis(7))(255)
 #dvi<-mato[1]-mato[2]
 
-```
-
+``` 

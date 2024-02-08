@@ -1,0 +1,150 @@
+\documentclass{beamer}
+\usepackage{graphicx} % Required for inserting images
+% usetheme function to change layout
+\usetheme{Frankfurt}
+%
+%
+%change colour of theme
+\usecolortheme{seahorse}
+%
+\title{Spacial analysis of Mugello area (Tuscany)}
+\author{Suada Pastacaldi}
+\date{February 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+
+\begin{frame}{Areas of interest}
+    \begin{itemize}
+        \item Mugello \\
+        10.82428, 11.80481, 43.71259, 44.15045 (3831 km2)\\
+        - Comparison 2016-2024
+        \bigskip
+        \item Bilancino Lake \\
+        11.20228, 11.42716, 43.92792, 44.04765 (240 km2)\\
+        - Comparison December-July 2023
+        \bigskip
+        \item Brento Cave of Serena stone \\
+        11.32187, 11.52237, 44.08956, 44.1792 (160 km2) \\
+        - Comparison 2016-2023
+        \bigskip
+    \end{itemize}
+\end{frame}
+\begin{frame}{Data Collection}
+Sentinel 2 - Copernicus Open Hub
+\begin{itemize}
+    \item Select area of interest
+    \item Select dates of interest
+    \item Analytical image
+    \item Image format: JPG (no georeference)
+    \item Coordinate system: WGS 84 (EPSG:4326) 
+    \item Download of all raw layers
+\end{itemize}
+\end{frame}
+\begin{frame}{Libraries}
+To complete the project the following libraries were used:
+    \begin{itemize}
+        \item terra
+        \item imageRy
+        \item ggplot2
+        \item viridis
+    \end{itemize}
+\end{frame}
+
+
+\section{Mugello}
+
+
+\begin{frame}{Import of the 4 bands B2, B3, B4, B8}
+    \centering
+Function rast() from terra
+   \begin{figure} 
+    \includegraphics[width=0.4\textwidth]{Bends 2016.png}
+    \caption{2016}
+    \includegraphics[width=0.4\textwidth]{Bands 2024.png}
+    \caption{2024}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Graphics}
+    %to insert image upload in barra a sx 
+    \centering
+    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+\end{frame}
+
+\begin{frame}{Graphics}
+    %to insert image upload in barra a sx 
+    \centering
+    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+
+\end{frame}
+\section{Formulas}
+
+\begin{frame}{Formulas}
+     \begin{equation}
+        H' = - \sum_{i=1}^{N} p_i \times \log{p_i}
+    \end{equation}
+\begin{equation}
+K_{\alpha}=\frac{1}{\left( \sum_{i=1}^{N} p_i \times p_i^{\alpha-1} \right)^{\frac{1}{\alpha-1}}} 
+\end{equation}
+\end{frame}
+
+\begin{frame}{Formulas in text}
+    Bla bla bla I love formulas, especially into my sentences
+$H' = - \sum_{i=1}^{N} p_i \times \log{p_i}$ and blablabla again
+\end{frame}
+
+
+ \begin{frame}{Formulas that no other software can do!}
+    \begin{equation}
+    M_d=
+    \begin{pmatrix}
+    d_{\lambda_1,\lambda_1} & d_{\lambda_1,\lambda_2} & d_{\lambda_1,\lambda_3} & \cdots & d_{\lambda_1,\lambda_n} \\
+    d_{\lambda_2,\lambda_1} & d_{\lambda_2,\lambda_2} & d_{\lambda_2,\lambda_3} & \cdots & d_{\lambda_2,\lambda_n} \\
+    d_{\lambda_3,\lambda_1} & d_{\lambda_3,\lambda_2} & d_{\lambda_3,\lambda_3} & \cdots & d_{\lambda_3,\lambda_n} \\
+    \vdots  & \vdots  & \vdots  & \ddots & \vdots  \\
+    d_{\lambda_n,\lambda_1} & d_{\lambda_n,\lambda_2} & d_{\lambda_n,\lambda_3} & \cdots & d_{\lambda_n,\lambda_n}
+    \end{pmatrix}
+    \end{equation}
+\end{frame}
+\begin{frame}{text plus figure}
+    hsuejendjj
+    \centering
+    \bigskip
+    \includegraphics[width=\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    
+\end{frame}
+\begin{frame}{columns in beamer}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering
+        text
+        \column{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.2\textwidth]{italyflooding_oil_2023307_lrg.jpg}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{The code!}
+    \lstinputlisting[language=R]{code.R}
+\end{frame}
+
+\begin{frame}{The code!}
+    \lstinputlisting[language=R]{} \\
+    \bigskip
+    This is the function of R we are using, where:
+    \begin{itemize}
+        \item x = input file...
+        \item $\alpha$ = blablabla
+    \end{itemize}
+    \alpha
+\end{frame}
+
+\end{document}

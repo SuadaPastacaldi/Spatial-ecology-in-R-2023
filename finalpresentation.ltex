@@ -62,89 +62,126 @@ To complete the project the following libraries were used:
 \begin{frame}{Import of the 4 bands B2, B3, B4, B8}
     \centering
 Function rast() from terra
-   \begin{figure} 
-    \includegraphics[width=0.4\textwidth]{Bends 2016.png}
-    \caption{2016}
-    \includegraphics[width=0.4\textwidth]{Bands 2024.png}
-    \caption{2024}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Graphics}
-    %to insert image upload in barra a sx 
-    \centering
-    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-\end{frame}
-
-\begin{frame}{Graphics}
-    %to insert image upload in barra a sx 
-    \centering
-    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-    \includegraphics[width=0.4\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-
-\end{frame}
-\section{Formulas}
-
-\begin{frame}{Formulas}
-     \begin{equation}
-        H' = - \sum_{i=1}^{N} p_i \times \log{p_i}
-    \end{equation}
-\begin{equation}
-K_{\alpha}=\frac{1}{\left( \sum_{i=1}^{N} p_i \times p_i^{\alpha-1} \right)^{\frac{1}{\alpha-1}}} 
-\end{equation}
-\end{frame}
-
-\begin{frame}{Formulas in text}
-    Bla bla bla I love formulas, especially into my sentences
-$H' = - \sum_{i=1}^{N} p_i \times \log{p_i}$ and blablabla again
-\end{frame}
-
-
- \begin{frame}{Formulas that no other software can do!}
-    \begin{equation}
-    M_d=
-    \begin{pmatrix}
-    d_{\lambda_1,\lambda_1} & d_{\lambda_1,\lambda_2} & d_{\lambda_1,\lambda_3} & \cdots & d_{\lambda_1,\lambda_n} \\
-    d_{\lambda_2,\lambda_1} & d_{\lambda_2,\lambda_2} & d_{\lambda_2,\lambda_3} & \cdots & d_{\lambda_2,\lambda_n} \\
-    d_{\lambda_3,\lambda_1} & d_{\lambda_3,\lambda_2} & d_{\lambda_3,\lambda_3} & \cdots & d_{\lambda_3,\lambda_n} \\
-    \vdots  & \vdots  & \vdots  & \ddots & \vdots  \\
-    d_{\lambda_n,\lambda_1} & d_{\lambda_n,\lambda_2} & d_{\lambda_n,\lambda_3} & \cdots & d_{\lambda_n,\lambda_n}
-    \end{pmatrix}
-    \end{equation}
-\end{frame}
-\begin{frame}{text plus figure}
-    hsuejendjj
-    \centering
-    \bigskip
-    \includegraphics[width=\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-    
-\end{frame}
-\begin{frame}{columns in beamer}
     \begin{columns}
         \column{0.5\textwidth}
         \centering
-        text
+        \includegraphics[width=1\textwidth]{Bends 2016.png}
+        \caption{2016}
+         
         \column{0.5\textwidth}
         \centering
-        \includegraphics[width=0.2\textwidth]{italyflooding_oil_2023307_lrg.jpg}
-    \end{columns}
+        \includegraphics[width=1\textwidth]{Bands 2024.png}
+        \caption{2024}
+    \end{columns} 
 \end{frame}
 
-\begin{frame}{The code!}
-    \lstinputlisting[language=R]{code.R}
+\begin{frame}{Stack of the four bands}
+     \centering
+    c(B2, B3, B4, B8)
+    \includegraphics[width=1\textwidth]{Stackvir.png}
 \end{frame}
 
-\begin{frame}{The code!}
-    \lstinputlisting[language=R]{} \\
+\begin{frame}{True color}
+     \centering
+     im.plotRGB(stack, 3, 2, 1)
+    \includegraphics[width=1\textwidth]{Mreality.png}
+\end{frame}
+
+\begin{frame}{False color}
+     \centering
+     im.plotRGB(stack, 4, 3, 2)
+    \includegraphics[width=1\textwidth]{Mfalse.png}
+\end{frame}
+
+\begin{frame}{SWIR (Short Wave Infrared)}
+     \centering
+     Different stack :  B12, B8A, B04 \\
+     im.plotRGB(stack, 3, 2, 1)
+    \includegraphics[width=1\textwidth]{Mswir.png}
+    
+\end{frame}
+
+
+\section{Bilancino Lake}
+
+
+\begin{frame}{Bilancino Lake}
+     \centering
+     Area (11.20228, 11.42716, 43.92792, 44.04765)
+    \includegraphics[width=1\textwidth]{Bilancino.png}
+\end{frame}
+
+\begin{frame}{NDWI (Normalized Difference Water Index) }
+     \centering
+     \begin{equation}
+        NDWI = \frac{B03 - B08}{B03 +B08}
+     \end{equation}
+    \includegraphics[width=1\textwidth]{Rplot.png}
+\end{frame}
+
+
+\begin{frame}{Difference }
+     \centering
+    
+         DIFF = NDWI.d - NDWI.j
+    \includegraphics[width=1\textwidth]{NDWIdiff.png}
+\end{frame}
+
+\begin{frame}{Classification}
+    \centering
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering
+        July
+        \smallskip
+        \includegraphics[width=1\textwidth]{classl.png}
+        \includegraphics[width=1\textwidth]{Graphj.png}
+         
+        \column{0.5\textwidth}
+        \centering
+        December
+        \smallskip
+        \includegraphics[width=1\textwidth]{classd.png}
+        \includegraphics[width=1\textwidth]{Graphd.png}
+    \end{columns} 
+\end{frame}
+
+
+\section{Brento Cave of Serena stone}
+
+
+\begin{frame}{Brento Cave of Serena stone}
+     \centering
+     Area (11.32187, 11.52237, 44.08956, 44.1792)
+    \includegraphics[width=1\textwidth]{cave.png}
+\end{frame}
+
+
+ \begin{frame}{NDVI (Normalized Difference Vegetation Index) }
+     \centering
+     \begin{equation}
+        NDVI = \frac{B08 - B04}{B08 + B04}
+     \end{equation}
+     \smallskip
+    \includegraphics[width=1\textwidth]{NDVI.png}
+\end{frame}
+
+\begin{frame}{Principal component analysis PCA}
+    Function pairs() on stack of the four bands B02, B03, B04, B08
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pairs.png}
+    
+    Confirmed by im.pca()
+\end{frame}
+
+\begin{frame}{Variability}
+    focal(pc1, matrix(1/49, 7, 7), sd)
+    \centering
     \bigskip
-    This is the function of R we are using, where:
-    \begin{itemize}
-        \item x = input file...
-        \item $\alpha$ = blablabla
-    \end{itemize}
-    \alpha
+    \includegraphics[width=\textwidth]{Rplot01.png}
+    
 \end{frame}
+
+
 
 \end{document}

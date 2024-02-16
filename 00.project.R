@@ -4,6 +4,7 @@ library(imageRy)
 library(viridis)
 vir<-colorRampPalette(viridis(7))(255)
 mako<-colorRampPalette(mako(7))(255)
+magma<-colorRampPalette(magma(7))(255)
 #############################################################################################################
 
 #Analysis of 3 areas
@@ -13,6 +14,7 @@ mako<-colorRampPalette(mako(7))(255)
 
 ##############################################################################################################
 #1 Mugello
+
 ################################### 2024 ##############################
 
 setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/Spacial project/2024")
@@ -105,6 +107,8 @@ plot(stackswir24, col=vir)
 im.plotRGB(stackswir24, 1, 2, 3)
 
 
+
+
 ################################## 2016 #######################################
 
 setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/Spacial project/2016")
@@ -190,9 +194,13 @@ title("2024",line = 0.5)
 
 dev.off()
 
+
+
 ##############################################################################################################
 #2 Lago di Bilancino
 
+
+############################## BILANCINO ################################
 
 ############################## DICEMBRE ############################
 setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/Spacial project/bilancino dicembre")
@@ -274,7 +282,9 @@ title("Difference in NDWI December - July", line = 3)
 
 par(mfrow=c(1,2))
 dclass<-im.classify(ndwiD)
+plot(dclass, col=mako)
 lclass<-im.classify(ndwiL)
+plot(lclass, col=mako)
 
 fd<-freq(dclass)
 ncell(dclass)
@@ -307,10 +317,16 @@ p2 <- ggplot(tabella, aes(x=Classes, y=July, color=Classes)) + geom_bar(stat="id
 p1
 p2
 
+
 dev.off()
+
+
+
+
 ##############################################################################################################
 #3 Cave di Brento
 
+############################### CAVE ################################
 ################################ 2024 ######################################
 
 setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/Spacial project/frena24")
@@ -338,51 +354,22 @@ im.plotRGB(fstack24, 3, 2, 1)
 #false color
 im.plotRGB(fstack24,4, 3, 2)
 
-############################## 2016 ############################
-setwd("C:/Users/suada/OneDrive - University of Pisa/Desktop/Spacial project/frena16")
-
-fb2.16<-rast("2016-01-20-00_00_2016-01-20-23_59_Sentinel-2_L1C_B02_(Raw).jpg")
-fb3.16<-rast("2016-01-20-00_00_2016-01-20-23_59_Sentinel-2_L1C_B03_(Raw).jpg")
-fb4.16<-rast("2016-01-20-00_00_2016-01-20-23_59_Sentinel-2_L1C_B04_(Raw).jpg")
-fb8.16<-rast("2016-01-20-00_00_2016-01-20-23_59_Sentinel-2_L1C_B04_(Raw).jpg")
-
-#change extent of b8 image
-ext(fb8.16) <- ext(fb2.16)
-fb8.16_disagg <- disagg(fb8.16, 2) 
-fb8.16_resampled <- resample(fb8.16_disagg, fb2.16) 
-fb8.16_resampled
-plot(fb8.16_resampled)
-
-
-fstack16<-c(fb2.16, fb3.16, fb4.16,fb8.16_resampled)
-
-im.plotRGB(fstack16, 3, 2, 1)
-im.plotRGB(fstack16,4, 2, 1)
-##############################################################################
-
-par(mfrow=c(1,2))
-im.plotRGB(fstack16, 3, 2, 1)
-im.plotRGB(fstack24, 3, 2, 1)
 
 dev.off()
 
 ############################ NDVI ###########################################
 
-ndvi16<-(fb8.16-fb4.16)-(fb8.16+fb4.16)
-plot(ndvi16, col=vir)
 
-ndvi24<-(fb8.24-fb4.24)-(fb8.24+fb4.24)
+ndvi24<-(fb8.24-fb4.24)/(fb8.24+fb4.24)
 plot(ndvi24, col=vir)
-
-par(mfrow=c(1,2))
-plot(ndvi16, col=mako)
-title("2016", line = -1)
 plot(ndvi24, col=mako)
-title("2024", line = -1)
+
+
+plot(ndvi24, col=magma)
 
 dev.off()
 ############################ VARIABILITY  ####################################
-#uning nir band
+#using  only nir band
 
 fb8.24
 plot(fb8.24, col=vir)
@@ -410,54 +397,30 @@ pairs(fstack24)
 #last raw sent 4 is just a control layer
 
 pc<-im.pca(fstack24)
+pc
+plot(pc, col=vir)
 
-#     Standard deviations (1, .., p=4):
-#[1] 76.76374 57.23045  4.76155  0.00000
 #the 1 is the the band with the highest possible range
-fstack24
+pc1<-pc$PC1
 
-
-#it is called PC1
-pc1<-fstack24$`2024-02-02-00_00_2024-02-02-23_59_Sentinel-2_L1C_B08_(Raw)`
 plot(pc1, col=mako)
 
 pc1sd3<-focal(pc1, matrix(1/9, 3, 3), sd)
-plot(pc1sd3, col=mako)
+plot(pc1sd3, col=magma)
+title("Variability on PC1 in a 3x3 moving window", line = 2.5)
 
 #on 7 by 7
 pc1sd7<-focal(pc1, matrix(1/49, 7, 7), sd)
-plot(pc1sd7, col=mako)
+plot(pc1sd7, col=magma)
 title("Variability on PC1 in a 7x7 moving window", line = 2.5)
 
-#to plot everything all toghether
-#2 ways, par() or stack
-
-#2 rows , 3 cols
-par(mfrow=c(2,3))
-im.plotRGB(fstack24,r=2,g=1,b=3) 
-plot(sd3, col=mako)
-plot(sd7, col=mako)
-plot(pc1, col=mako)
-plot(pc1sd3, col=mako)
-plot(pc1sd7, col=mako)
-
-
-#stack
-#stack all layers, concatenates elements
-sdstack<-c(sd3, sd7, pc1sd3, pc1sd7)
-plot(sdstack, col=mako)
-
-names(sdstack)<-c("sd3","sd7", "pc1sd3", "pc1sd7")
-plot(sdstack, col=mako)
-
-
-dev.off()
 
 par(mfrow=c(1,2))
-plot(pc1sd7, col=mako)
+plot(pc1sd3, col=magma)
 title("Variability (sd)", line = -1)
 im.plotRGB(fstack24, 3, 2, 1)
 
+dev.off()
 
 
 

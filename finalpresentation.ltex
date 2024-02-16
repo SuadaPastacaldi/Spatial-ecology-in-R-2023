@@ -15,6 +15,7 @@
 
 \maketitle
 
+
 \section{Introduction}
 
 
@@ -30,10 +31,11 @@
         \bigskip
         \item Brento Cave of Serena stone \\
         11.32187, 11.52237, 44.08956, 44.1792 (160 km2) \\
-        - Comparison 2016-2023
+        - Biodiversity analysis
         \bigskip
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Data Collection}
 Sentinel 2 - Copernicus Open Hub
 \begin{itemize}
@@ -45,6 +47,7 @@ Sentinel 2 - Copernicus Open Hub
     \item Download of all raw layers
 \end{itemize}
 \end{frame}
+
 \begin{frame}{Libraries}
 To complete the project the following libraries were used:
     \begin{itemize}
@@ -58,6 +61,18 @@ To complete the project the following libraries were used:
 
 \section{Mugello}
 
+
+\begin{frame}{Mugello}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{Map_-_IT_-_Firenze_-_Comunità_Montana_Mugello.svg.png}
+         
+        \column{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{mugello.png}
+    \end{columns} 
+\end{frame}
 
 \begin{frame}{Import of the 4 bands B2, B3, B4, B8}
     \centering
@@ -97,8 +112,7 @@ Function rast() from terra
      \centering
      Different stack :  B12, B8A, B04 \\
      im.plotRGB(stack, 3, 2, 1)
-    \includegraphics[width=1\textwidth]{Mswir.png}
-    
+    \includegraphics[width=1\textwidth]{Mswir.png} 
 \end{frame}
 
 
@@ -119,11 +133,8 @@ Function rast() from terra
     \includegraphics[width=1\textwidth]{Rplot.png}
 \end{frame}
 
-
 \begin{frame}{Difference }
      \centering
-    
-         DIFF = NDWI.d - NDWI.j
     \includegraphics[width=1\textwidth]{NDWIdiff.png}
 \end{frame}
 
@@ -134,14 +145,14 @@ Function rast() from terra
         \centering
         July
         \smallskip
-        \includegraphics[width=1\textwidth]{classl.png}
+        \includegraphics[width=1\textwidth]{lcalss.png}
         \includegraphics[width=1\textwidth]{Graphj.png}
          
         \column{0.5\textwidth}
         \centering
         December
         \smallskip
-        \includegraphics[width=1\textwidth]{classd.png}
+        \includegraphics[width=1\textwidth]{dclass.png}
         \includegraphics[width=1\textwidth]{Graphd.png}
     \end{columns} 
 \end{frame}
@@ -156,30 +167,26 @@ Function rast() from terra
     \includegraphics[width=1\textwidth]{cave.png}
 \end{frame}
 
-
  \begin{frame}{NDVI (Normalized Difference Vegetation Index) }
      \centering
      \begin{equation}
         NDVI = \frac{B08 - B04}{B08 + B04}
      \end{equation}
      \smallskip
-    \includegraphics[width=1\textwidth]{NDVI.png}
+    \includegraphics[width=0.7\textwidth]{ndvinew.png}
 \end{frame}
 
 \begin{frame}{Principal component analysis PCA}
-    Function pairs() on stack of the four bands B02, B03, B04, B08
+    im.pca() on stack of the four bands B02, B03, B04, B08
     \centering
-    \includegraphics[width=0.8\textwidth]{Pairs.png}
-    
-    Confirmed by im.pca()
+    \includegraphics[width=0.9\textwidth]{pca.png} 
 \end{frame}
 
 \begin{frame}{Variability}
-    focal(pc1, matrix(1/49, 7, 7), sd)
+    focal(pc1, matrix(1/9, 3, 3), sd)
     \centering
     \bigskip
-    \includegraphics[width=\textwidth]{Rplot01.png}
-    
+    \includegraphics[width=\textwidth]{varmagma.png}   
 \end{frame}
 
 

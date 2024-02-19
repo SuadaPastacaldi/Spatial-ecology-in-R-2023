@@ -165,7 +165,7 @@ plot(treedensitymap)
 plot(elev)
 
 
-
+dev.off()
 #------------------------------------------------
 
 #03 population distribution
@@ -279,6 +279,8 @@ points(pres)
 plot(elev)
 points(pres)
 
+
+dev.off()
 #----------------------------------------------
 
 #04 communities
@@ -405,7 +407,7 @@ densityPlot(timemac, rug=TRUE)
 #function overlapPlot, colours the overlapping distribution
 overlapPlot(timetig, timemac)
 
-
+dev.off()
 #-----------------------------------------------------------------------------
 
 #05 remote sensing
@@ -602,6 +604,8 @@ im.plotRGB(mato2006, r=3, g=2, b=1)
 #visible decrease of vegetation
 
 
+dev.off()
+
 #----------------------------------------------------------------------------
 
 #06 time series
@@ -694,6 +698,9 @@ im.plotRGB(stackg, r=1, g=2, b=4)
 
 #if we have high values in 2015 everything is --> blueish/blackish
 #if it was higher in the first band it would have been red and green for the second
+
+
+dev.off()
 
 #-------------------------------------------------------------------------
 
@@ -800,6 +807,9 @@ plot(cut, col=c)
 #ext has already been set, 
 #compare them 
 
+
+
+dev.off()
 
 #--------------------------------------------------------------------
 
@@ -959,6 +969,7 @@ p2
 #merge the 2 graphs
 p1+p2
 
+dev.off()
 
 #------------------------------------------------------------------
 
@@ -1091,6 +1102,9 @@ plot(sdstack, col=viridisc)
 #second row calculation on all bands
 
 #focal can also be used to do any stathistics computation, mean...
+
+
+dev.off()
 
 #------------------------------------------------------------------
 
